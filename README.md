@@ -2,7 +2,7 @@
 
 Aplikasi Flutter untuk monitoring IoT dengan fitur sensor dashboard, pull-to-refresh, offline caching, dan Material Design UI.
 
-## 🚀 Instalasi & Menjalankan (3 Langkah Mudah)
+## 🚀 Instalasi & Menjalankan
 
 ### 1️⃣ Clone Repository
 ```bash
@@ -19,15 +19,6 @@ flutter pub get
 ```bash
 flutter run
 ```
-
----
-
-## 📋 Requirements
-
-- Flutter SDK 3.0+
-- Dart SDK 3.0+
-- Android Studio / Xcode
-- Git
 
 ---
 
@@ -56,16 +47,6 @@ lib/
 └── widgets/sensor_card.dart
 ```
 
----
-
-## 📚 Documentation
-
-- `QUICK_START.md` - Panduan instalasi lengkap
-- `ARCHITECTURE.md` - Design & architecture
-- `FILE_STRUCTURE.md` - Penjelasan setiap file
-- `SUBMISSION_CHECKLIST.md` - Pre-submission checklist
-
----
 
 ## 📦 Dependencies
 
