@@ -86,4 +86,13 @@ class SensorProvider extends ChangeNotifier {
     await _storageService.clearAllCache();
     notifyListeners();
   }
+
+  /// Explicitly clear cache only
+  Future<void> clearCache() async {
+    await _storageService.clearAllCache();
+    _isFromCache = false;
+    _sensorDataList = [];
+    _error = null;
+    notifyListeners();
+  }
 }

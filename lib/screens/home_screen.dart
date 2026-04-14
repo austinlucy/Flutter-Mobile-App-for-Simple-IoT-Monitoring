@@ -55,8 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Colors.blue.shade300,
-              Colors.blue.shade600,
+              const Color(0xFF0052CC),
+              const Color(0xFF0066FF),
             ],
           ),
         ),
@@ -68,32 +68,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 60),
+                  const SizedBox(height: 40),
                   
-                  // Logo
+                  // Logo with shadow
                   Container(
-                    width: 100,
-                    height: 100,
+                    width: 110,
+                    height: 110,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withOpacity(0.15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 20,
+                          spreadRadius: 5,
+                        ),
+                      ],
                     ),
                     child: const Icon(
-                      Icons.sensors,
+                      Icons.sensors_rounded,
                       size: 60,
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 36),
                   
                   // Title
                   const Text(
                     'Welcome to Smart Room Monitor',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 26,
+                      fontWeight: FontWeight.w700,
                       color: Colors.white,
+                      letterSpacing: 0.3,
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -103,25 +111,44 @@ class _HomeScreenState extends State<HomeScreen> {
                     'Monitor your IoT devices in real-time',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 15,
                       color: Colors.white70,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                   const SizedBox(height: 48),
                   
-                  // Username input
+                  // Username input with modern styling
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(14),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          spreadRadius: 2,
+                        ),
+                      ],
                     ),
                     child: TextField(
                       controller: _usernameController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Enter your name',
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon: const Icon(
+                          Icons.person_rounded,
+                          color: Color(0xFF0052CC),
+                        ),
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.all(16),
+                        contentPadding: const EdgeInsets.all(16),
+                        hintStyle: TextStyle(
+                          color: Colors.grey.shade400,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -130,39 +157,54 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Start button
                   SizedBox(
                     width: double.infinity,
-                    height: 48,
+                    height: 52,
                     child: ElevatedButton(
                       onPressed: _proceedToDashboard,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(14),
                         ),
+                        elevation: 6,
                       ),
-                      child: const Text(
-                        'Start Monitoring',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                        ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Start Monitoring',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 0.3,
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Icon(Icons.arrow_forward_rounded, size: 20),
+                        ],
                       ),
                     ),
                   ),
                   
-                  const SizedBox(height: 80),
+                  const SizedBox(height: 60),
                   
                   // Features showcase
-                  Column(
-                    children: [
-                      _buildFeature(Icons.thermostat, 'Real-time Temperature'),
-                      const SizedBox(height: 12),
-                      _buildFeature(Icons.water_drop, 'Humidity Monitoring'),
-                      const SizedBox(height: 12),
-                      _buildFeature(Icons.lightbulb, 'Smart Lighting Control'),
-                      const SizedBox(height: 12),
-                      _buildFeature(Icons.storage, 'Data Caching & Offline Mode'),
-                    ],
+                  _buildFeatureSection(
+                    icon: Icons.thermostat_rounded,
+                    label: 'Real-time Temperature',
+                  ),
+                  const SizedBox(height: 16),
+                  _buildFeatureSection(
+                    icon: Icons.water_drop_rounded,
+                    label: 'Humidity Monitoring',
+                  ),
+                  const SizedBox(height: 16),
+                  _buildFeatureSection(
+                    icon: Icons.lightbulb_rounded,
+                    label: 'Smart Lighting Control',
+                  ),
+                  const SizedBox(height: 16),
+                  _buildFeatureSection(
+                    icon: Icons.storage_rounded,
+                    label: 'Data Caching & Offline Mode',
                   ),
                 ],
               ),
@@ -173,24 +215,27 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildFeature(IconData icon, String label) {
+  Widget _buildFeatureSection(
+      {required IconData icon, required String label}) {
     return Row(
       children: [
         Container(
-          width: 36,
-          height: 36,
+          width: 44,
+          height: 44,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.white.withOpacity(0.3),
+            color: Colors.white.withOpacity(0.2),
           ),
-          child: Icon(icon, color: Colors.white, size: 18),
+          child: Icon(icon, color: Colors.white, size: 22),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 16),
         Text(
           label,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 14,
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 0.2,
           ),
         ),
       ],

@@ -55,8 +55,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.blue.shade400,
-              Colors.blue.shade800,
+              const Color(0xFF0052CC),
+              const Color(0xFF0066FF),
             ],
           ),
         ),
@@ -69,11 +69,18 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 child: ScaleTransition(
                   scale: _scaleAnimation,
                   child: Container(
-                    width: 120,
-                    height: 120,
+                    width: 140,
+                    height: 140,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withOpacity(0.15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 20,
+                          spreadRadius: 5,
+                        ),
+                      ],
                     ),
                     child: const Icon(
                       Icons.home_outlined,
@@ -83,38 +90,60 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 40),
               FadeTransition(
                 opacity: _fadeAnimation,
                 child: const Text(
                   'Smart Room Monitor',
                   style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700,
                     color: Colors.white,
+                    letterSpacing: 0.5,
                   ),
+                  textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
               FadeTransition(
                 opacity: _fadeAnimation,
                 child: const Text(
                   'IoT Monitoring System',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 15,
                     color: Colors.white70,
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 0.2,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 60),
+              FadeTransition(
+                opacity: _fadeAnimation,
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white.withOpacity(0.15),
+                  ),
+                  child: const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    strokeWidth: 3,
                   ),
                 ),
               ),
               const SizedBox(height: 40),
               FadeTransition(
                 opacity: _fadeAnimation,
-                child: const SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                    strokeWidth: 3,
+                child: const Text(
+                  'Initializing...',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.white60,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1,
                   ),
                 ),
               ),

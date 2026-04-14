@@ -37,25 +37,39 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF0066FF),
+          brightness: Brightness.light,
+        ),
         appBarTheme: AppBarTheme(
           centerTitle: true,
-          elevation: 2,
-          backgroundColor: Colors.blue.shade600,
+          elevation: 0,
+          backgroundColor: const Color(0xFF0052CC),
           foregroundColor: Colors.white,
+          scrolledUnderElevation: 4,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue.shade600,
+            backgroundColor: const Color(0xFF0052CC),
             foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(12),
             ),
+            elevation: 3,
           ),
         ),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.blue.shade600,
+          backgroundColor: const Color(0xFF0052CC),
           foregroundColor: Colors.white,
+          elevation: 6,
+        ),
+        cardTheme: CardTheme(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          shadowColor: Colors.black.withOpacity(0.1),
         ),
       ),
       home: const SplashScreen(),
