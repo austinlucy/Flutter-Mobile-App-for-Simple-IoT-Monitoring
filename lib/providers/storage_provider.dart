@@ -45,4 +45,12 @@ class StorageProvider extends ChangeNotifier {
     }
     return 'Never';
   }
+
+  /// Logout - clear all user data
+  Future<void> logout() async {
+    await _storageService.clearUsername();
+    _username = null;
+    _lastRefresh = null;
+    notifyListeners();
+  }
 }

@@ -21,6 +21,12 @@ class StorageService {
     return prefs.getString(_usernameKey);
   }
 
+  /// Clear username from local storage
+  Future<void> clearUsername() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_usernameKey);
+  }
+
   /// Save last refresh timestamp
   Future<void> saveLastRefresh(DateTime dateTime) async {
     final prefs = await SharedPreferences.getInstance();
